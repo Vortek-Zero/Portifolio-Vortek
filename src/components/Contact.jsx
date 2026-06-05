@@ -170,7 +170,40 @@ export default function Contact() {
     }
   };
 
-  const handleSend = () => setStatus("sending");
+  const handleSend = async () => {
+    setStatus("sending");
+
+    try {
+      // Substitua pelo seu email real
+      const emailDestino = "luna.os2732@gmail.com";
+
+      const response = await fetch(`https://formsubmit.co/ajax/${emailDestino}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          _subject: `[Vortek Portfolio] Novo contato de ${formData.name}`,
+          Nome: formData.name,
+          Email: formData.email,
+          Mensagem: formData.message
+        })
+      });
+
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        console.error("Erro na API do FormSubmit");
+        setStatus("idle");
+        setHoldProgress(0);
+      }
+    } catch (error) {
+      console.error("Erro ao enviar email:", error);
+      setStatus("idle");
+      setHoldProgress(0);
+    }
+  };
 
   const resetForm = () => {
     setStatus("idle");

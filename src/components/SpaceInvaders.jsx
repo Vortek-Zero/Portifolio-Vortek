@@ -93,6 +93,9 @@ const SpaceInvaders = () => {
 
     const keys = {};
     const handleKeyDown = (e) => {
+      // Allow typing in inputs/textareas
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      
       if (['ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
         if (e.key === ' ') e.preventDefault();
         setUserInput(true);
@@ -100,6 +103,8 @@ const SpaceInvaders = () => {
       }
     };
     const handleKeyUp = (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      
       if (['ArrowLeft', 'ArrowRight', ' '].includes(e.key)) keys[e.key] = false;
     };
 
