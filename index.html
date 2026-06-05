@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Vortek Zero | Fullstack Developer & Systems Architect</title>
+    <meta name="description" content="Portfolio de Vortek Zero — Desenvolvedor fullstack especializado em React, Node.js, Python e arquitetura de sistemas. Projetos, skills e contato." />
+    <meta name="keywords" content="fullstack, developer, react, node.js, python, portfolio, vortek" />
+    <meta name="author" content="Vortek Zero" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Vortek Zero | Fullstack Developer" />
+    <meta property="og:description" content="Sistemas web modernos, escaláveis e com foco em experiência do usuário." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/logo.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vortek Zero | Fullstack Developer" />
+    <meta name="twitter:description" content="Sistemas web modernos, escaláveis e com foco em experiência do usuário." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="scroll-progress" aria-hidden="true"></div>
+    <div id="cursor-glow" aria-hidden="true"></div>
+    <div id="noise-overlay" aria-hidden="true"></div>
+    <div id="boot-screen" aria-hidden="false">
+      <div class="boot-content">
+        <div class="boot-line" data-text="[BOOT] Vortek Systems — v2.4.0"></div>
+        <div class="boot-line" data-text="[INIT] Kernel loaded. Initializing modules..."></div>
+        <div class="boot-line" data-text="[OK]   React engine: READY"></div>
+        <div class="boot-line" data-text="[OK]   Three.js runtime: STANDBY"></div>
+        <div class="boot-line" data-text="[OK]   Terminal interface: ACTIVE"></div>
+        <div class="boot-line boot-done" data-text="[DONE] SYSTEM_READY — Booting desktop..."></div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("mousemove", (e) => {
+        document.querySelectorAll(".glow-target").forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.width === 0) return;
+          el.style.setProperty("--gx", ((e.clientX - r.left) / r.width) * 100 + "%");
+          el.style.setProperty("--gy", ((e.clientY - r.top) / r.height) * 100 + "%");
+        });
+        const glow = document.getElementById("cursor-glow");
+        if (glow) {
+          glow.style.setProperty("--cx", e.clientX + "px");
+          glow.style.setProperty("--cy", e.clientY + "px");
+        }
+      });
+      window.addEventListener("scroll", () => {
+        const bar = document.getElementById("scroll-progress");
+        if (!bar) return;
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = h > 0 ? (window.scrollY / h) * 100 + "%" : "0%";
+        const grid = document.querySelector(".bg-grid");
+        if (grid) {
+          const sy = window.scrollY;
+          grid.style.transform = `translate(${sy * 0.15}px, ${sy * 0.1}px)`;
+        }
+      });
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          const boot = document.getElementById("boot-screen");
+          if (boot) {
+            boot.classList.add("boot-fade");
+            setTimeout(() => { boot.style.display = "none"; }, 600);
+          }
+        }, 2800);
+      });
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
