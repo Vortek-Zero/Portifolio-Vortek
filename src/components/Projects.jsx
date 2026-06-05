@@ -77,7 +77,26 @@ export default function Projects() {
                   <div className={`project-card-wrapper ${index === activeIndex ? 'active-slide' : 'inactive-slide'}`}>
                     <div className="project-card-secret">
                       <div className="secret-image-container">
-                        {project.secret.type === "images" ? (
+                        {project.slug === "Luzes-com-palmas" ? (
+                          <div className="clap-animation-container">
+                            <div className="clap-interactive-zone">
+                              <div className="clap-waves" />
+                              <div className="clap-hand clap-hand-left">
+                                <LucideIcons.Hand size={32} />
+                              </div>
+                              <div className="clap-hand clap-hand-right">
+                                <LucideIcons.Hand size={32} />
+                              </div>
+                            </div>
+                            <div className="clap-bulb-wrap">
+                              <LucideIcons.Lightbulb className="clap-bulb" size={40} />
+                            </div>
+                            <div className="clap-mic-indicator">
+                              <LucideIcons.Mic size={12} />
+                              <span>AUDIO_TRIGGER_ACTIVE</span>
+                            </div>
+                          </div>
+                        ) : project.secret.type === "images" ? (
                           <>
                             {project.secret.files.length > 1 && (
                               <img

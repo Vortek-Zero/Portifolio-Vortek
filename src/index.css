@@ -1501,18 +1501,26 @@ nav button:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
-.project-card-wrapper:hover .img-left.is-screenshot {
-  transform: translate(-100px, -130px) scale(0.9) rotate(-8deg);
-}
-
-.project-card-wrapper:hover .img-right.is-screenshot {
-  transform: translate(100px, -130px) scale(0.9) rotate(8deg);
-}
-
-.img-center {
-  z-index: 3;
-  transform: translateY(100px) scale(1.1);
+/* Premium 3D Stack Fan-out Animation */
+.project-card-wrapper .img-left.is-screenshot {
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+  transform: translateY(120px) scale(0.6) rotate(0deg);
   opacity: 0;
+  z-index: 2;
+}
+
+.project-card-wrapper .img-right.is-screenshot {
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+  transform: translateY(120px) scale(0.6) rotate(0deg);
+  opacity: 0;
+  z-index: 1;
+}
+
+.project-card-wrapper .img-center {
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+  transform: translateY(120px) scale(0.5);
+  opacity: 0;
+  z-index: 3;
   max-width: 100px;
 }
 
@@ -1533,19 +1541,131 @@ nav button:hover {
   opacity: 1;
 }
 
-.project-card-wrapper:hover .img-left {
-  transform: translate(-80px, -140px) scale(0.7) rotate(-15deg);
-  opacity: 1;
+.project-card-wrapper:hover .img-left.is-screenshot {
+  transform: translate(-105px, -135px) scale(0.85) rotateY(15deg) rotateZ(-8deg);
+  opacity: 0.9;
+  filter: brightness(0.95) drop-shadow(-10px 15px 20px rgba(0, 0, 0, 0.7));
 }
 
-.project-card-wrapper:hover .img-right {
-  transform: translate(80px, -140px) scale(0.7) rotate(15deg);
-  opacity: 1;
+.project-card-wrapper:hover .img-right.is-screenshot {
+  transform: translate(105px, -135px) scale(0.85) rotateY(-15deg) rotateZ(8deg);
+  opacity: 0.9;
+  filter: brightness(0.95) drop-shadow(10px 15px 20px rgba(0, 0, 0, 0.7));
 }
 
 .project-card-wrapper:hover .img-center {
-  transform: translateY(-120px) scale(1.2);
+  transform: translateY(-115px) scale(1.15);
   opacity: 1;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+}
+
+/* Clap Animation Styles for Luzes com Palmas */
+.clap-animation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-80px);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card-wrapper:hover .clap-animation-container {
+  opacity: 1;
+  transform: translateY(-120px);
+}
+
+.clap-interactive-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  position: relative;
+}
+
+.clap-hand {
+  color: var(--text);
+  transition: transform 0.3s ease;
+}
+
+.clap-hand-left {
+  animation: leftClap 1.6s ease infinite;
+}
+
+.clap-hand-right {
+  animation: rightClap 1.6s ease infinite;
+}
+
+@keyframes leftClap {
+  0%, 100% { transform: translateX(-15px) rotate(-15deg); }
+  40% { transform: translateX(-15px) rotate(-15deg); }
+  50% { transform: translateX(0px) rotate(0deg); }
+  60% { transform: translateX(-15px) rotate(-15deg); }
+}
+
+@keyframes rightClap {
+  0%, 100% { transform: translateX(15px) rotate(15deg) scaleX(-1); }
+  40% { transform: translateX(15px) rotate(15deg) scaleX(-1); }
+  50% { transform: translateX(0px) rotate(0deg) scaleX(-1); }
+  60% { transform: translateX(15px) rotate(15deg) scaleX(-1); }
+}
+
+.clap-waves {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  opacity: 0;
+  transform: scale(0.5);
+  pointer-events: none;
+  animation: wavePulse 1.6s ease infinite;
+}
+
+@keyframes wavePulse {
+  0%, 45% { opacity: 0; transform: scale(0.4); }
+  50% { opacity: 0.8; transform: scale(0.6); }
+  100% { opacity: 0; transform: scale(1.6); border-color: rgba(0, 212, 255, 0); }
+}
+
+.clap-bulb-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.clap-bulb {
+  color: #333;
+  filter: drop-shadow(0 0 0px transparent);
+  transition: all 0.3s ease;
+  animation: bulbToggle 1.6s ease infinite;
+}
+
+@keyframes bulbToggle {
+  0%, 48% { color: #444; filter: drop-shadow(0 0 0px transparent); }
+  50%, 100% { color: #ffd700; filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 30px rgba(255, 215, 0, 0.4)); }
+}
+
+.clap-mic-indicator {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: micBlink 0.8s ease infinite alternate;
+}
+
+@keyframes micBlink {
+  from { opacity: 0.4; }
+  to { opacity: 0.8; }
 }
 
 .project-card-wrapper:hover .project-card.vertical {
