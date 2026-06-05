@@ -9,6 +9,7 @@ export const projects = [
     tags: ["React", "Three.js", "Vite", "CSS", "GSAP"],
     status: "STABLE",
     url: "/project/VortekZero",
+    githubUrl: "https://github.com/Vortek-Zero/Portifolio-Vortek",
     features: [
       "Renderização 3D com Three.js e React Three Fiber",
       "Sistema de partículas interativo com parallax",
@@ -37,6 +38,7 @@ export const projects = [
     tags: ["Python", "Gemini API", "n8n", "Qwen LLM", "Docker"],
     status: "IN_PROCESS",
     url: "/project/LunaOS",
+    githubUrl: "https://github.com/Vortek-Zero/LunaOS",
     features: [
       "Orquestração híbrida de IA (Gemini API & Qwen local)",
       "Automação de fluxos complexos integrados com n8n",
@@ -65,6 +67,7 @@ export const projects = [
     tags: ["Arduino", "IoT", "Sensors", "Processing", "C++"],
     status: "FINISHED",
     url: "/project/Luzes-com-palmas",
+    githubUrl: "https://github.com/Vortek-Zero/Luzes-com-palmas",
     features: [
       "Detecção de padrões sonoros em tempo real",
       "Controle de iluminação via Arduino",

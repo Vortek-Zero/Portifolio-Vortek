@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Reveal from "./Reveal";
 import { projects } from "../data/projects";
 import * as LucideIcons from "lucide-react";
@@ -106,9 +107,9 @@ export default function Projects() {
                       </div>
                     </div>
 
-                    <a href={project.url} className="project-card vertical glow-target">
+                    <Link to={project.url} className="project-card vertical glow-target">
                       <CardContent project={project} />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               );

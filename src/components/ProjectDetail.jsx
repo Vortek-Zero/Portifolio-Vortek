@@ -133,6 +133,12 @@ export default function ProjectDetail() {
                   VISITAR PROJETO
                 </a>
               )}
+              {project.githubUrl && (
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ width: "100%", justifyContent: "center" }}>
+                  <LucideIcons.Github size={16} style={{ marginRight: "8px" }} />
+                  VER NO GITHUB
+                </a>
+              )}
             </div>
           </div>
         </div>
